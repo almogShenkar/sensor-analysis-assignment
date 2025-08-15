@@ -10,10 +10,11 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import pandas as pd
 
+
 def plot_signal(signal, label):
     """Plot X, Y, Z components of a signal"""
     fig, ax = plt.subplots(figsize=(12, 6))
-    
+
     ax.plot(signal[:, 0], label='X', alpha=0.7)
     ax.plot(signal[:, 1], label='Y', alpha=0.7)
     ax.plot(signal[:, 2], label='Z', alpha=0.7)
@@ -25,10 +26,11 @@ def plot_signal(signal, label):
 
     plt.tight_layout()
     plt.show()
-    
+
+
 def signal_viewer(
-    data_dir: Path,
-    labels_csv: Path,
+        data_dir: Path,
+        labels_csv: Path,
 ):
     """
     Launch an interactive viewer for signal samples.

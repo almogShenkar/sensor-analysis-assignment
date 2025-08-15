@@ -1,0 +1,12 @@
+{
+  "dataset": "Nexar IMU",
+  "test": {
+    "accuracy": 0.945,
+    "precision": 1.0,
+    "recall": 0.89,
+    "f1": 0.9417989417989417,
+    "roc_auc": 0.9281499999999999,
+    "pr_auc": 0.9555814170642534,
+    "threshold": 0.5
+  }
+}

@@ -25,6 +25,7 @@ signal_features = [
     'xy_corr', 'xz_corr', 'yz_corr'
 ]
 
+
 class IMUPipeline(BaseEstimator, ClassifierMixin):
     def __init__(self):
         self.label_encoder = LabelEncoder()
