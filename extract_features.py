@@ -157,11 +157,25 @@ def process_dataset(dataset_type='train'):
                 'gps_accuracy', 'network_type', 'device_model'
             ]
             for key in metadata_keys:
-                features[key] = data[key].item() if isinstance(data[key], np.ndarray) else data[key]
+                if key in data.files:
+                    value = data[key]
+                    if isinstance(value, np.ndarray):
+                        try:
+                            value = value.item()
+                        except ValueError:
+                            # Non-scalar arrays are unlikely in metadata but keep as-is
+                            pass
+                    features[key] = value
+                else:
+                    # Some data files may not include the full metadata set
+                    features[key] = None
 
-            features['driver_id'] = f"D{int(features['driver_id'])}"
-            features['session_id'] = f"S{int(features['session_id'])}"
-            features['timestamp'] = pd.to_datetime(features['timestamp'])
+            if features['driver_id'] is not None:
+                features['driver_id'] = f"D{int(features['driver_id'])}"
+            if features['session_id'] is not None:
+                features['session_id'] = f"S{int(features['session_id'])}"
+            if features['timestamp'] is not None:
+                features['timestamp'] = pd.to_datetime(features['timestamp'])
 
             all_features.append(features)
 
